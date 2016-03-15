@@ -1,0 +1,350 @@
+date/time          : 2015-12-27, 11:41:35, 954ms
+computer name      : HALIFAX
+user name          : Blumzi
+registered owner   : Blumzi
+operating system   : Windows 7 x64 Service Pack 1 build 7601
+system language    : Russian
+system up time     : 5 days 21 hours
+program up time    : 28 seconds
+processors         : 8x Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz
+physical memory    : 9001/16301 MB (free/total)
+free disk space    : (C:) 211.10 GB
+display mode       : 1680x1050, 32 bit
+process id         : $622c
+allocated memory   : 35.88 MB
+largest free block : 1.25 GB
+executable         : DomeAgent.exe
+exec. date/time    : 2015-12-27 11:41
+version            : 1.0.3.0
+compiled with      : Delphi 6
+madExcept version  : 4.0.12
+callstack crc      : $c2772e96, $1abc68d7, $1abc68d7
+count              : 19
+exception number   : 5
+exception class    : EConvertError
+exception message  : Format '%#' invalid or incompatible with argument.
+
+main thread ($6924):
+00464b3d DomeAgent.exe SysUtils              ConvertErrorFmt
+0046570c DomeAgent.exe SysUtils              FormatError
+004658df DomeAgent.exe SysUtils              FormatBuf.@label
+004657c8 DomeAgent.exe SysUtils              FormatBuf
+00465c2a DomeAgent.exe SysUtils              FmtStr
+00465bd6 DomeAgent.exe SysUtils              Format
+004bc313 DomeAgent.exe WiseDome      614 +13 TWiseDome.MoveTo
+004c10d4 DomeAgent.exe DomeAgentUnit 237 +25 TDomeForm.ManualAzKeyPress
+00499c4f DomeAgent.exe Controls              TWinControl.KeyPress
+00499c9e DomeAgent.exe Controls              TWinControl.DoKeyPress
+00499cc6 DomeAgent.exe Controls              TWinControl.WMChar
+00495995 DomeAgent.exe Controls              TControl.WndProc
+0049880f DomeAgent.exe Controls              TWinControl.WndProc
+0049848c DomeAgent.exe Controls              TWinControl.MainWndProc
+0047adcc DomeAgent.exe Classes               StdWndProc
+763d7bd5 user32.dll                          DispatchMessageA
+004b410f DomeAgent.exe Forms                 TApplication.ProcessMessage
+004b412e DomeAgent.exe Forms                 TApplication.HandleMessage
+004b434e DomeAgent.exe Forms                 TApplication.Run
+004c1aac DomeAgent.exe DomeAgent      24  +5 initialization
+770d3378 kernel32.dll                        BaseThreadInitThunk
+
+thread $6384:
+77b00196 ntdll.dll     NtWaitForMultipleObjects
+770d3378 kernel32.dll  BaseThreadInitThunk
+
+thread $3cec: <priority:1>
+77aff992 ntdll.dll               NtRemoveIoCompletion
+0045fa91 DomeAgent.exe madExcept CallThreadProcSafe
+0045fafb DomeAgent.exe madExcept ThreadExceptFrame
+770d3378 kernel32.dll            BaseThreadInitThunk
+>> created by main thread ($6924) at:
+739fa34f mswsock.dll
+
+thread $fb8:
+77b01f7f ntdll.dll     NtWaitForWorkViaWorkerFactory
+770d3378 kernel32.dll  BaseThreadInitThunk
+
+thread $28e0:
+77b01f7f ntdll.dll     NtWaitForWorkViaWorkerFactory
+770d3378 kernel32.dll  BaseThreadInitThunk
+
+modules:
+00400000 DomeAgent.exe  1.0.3.0            C:\Users\Blumzi\Desktop\Wise\9 - Wise - 22 Dec 2015\Dome Agent
+10450000 FaultRep.dll   6.1.7601.17514     C:\Windows\system32
+60800000 CBW32.DLL      1.85.0.0           C:\Program Files (x86)\Measurement Computing\DAQ
+6ee70000 mdnsNSP.dll    3.1.0.1            C:\Program Files (x86)\Bonjour
+6eea0000 WLIDNSP.DLL    7.250.4311.0       C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live
+6eed0000 winrnr.dll     6.1.7600.16385     C:\Windows\System32
+6eee0000 DNSAPI.dll     6.1.7601.17570     C:\Windows\system32
+6ef30000 pnrpnsp.dll    6.1.7600.16385     C:\Windows\system32
+6ef50000 napinsp.dll    6.1.7600.16385     C:\Windows\system32
+6ef60000 NLAapi.dll     6.1.7601.18685     C:\Windows\system32
+6ef70000 wshtcpip.dll   6.1.7600.16385     C:\Windows\System32
+6f7b0000 propsys.dll    7.0.7601.17514     C:\Windows\system32
+711b0000 wsock32.dll    6.1.7600.16385     C:\Windows\system32
+73410000 comctl32.DLL   6.10.7601.18837    C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.18837_none_41e855142bd5705d
+739f0000 mswsock.dll    6.1.7601.18254     C:\Windows\System32
+74130000 comctl32.dll   5.82.7601.18837    C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.7601.18837_none_ec86b8d6858ec0bc
+742b0000 WINMM.dll      6.1.7601.17514     C:\Windows\system32
+742f0000 dwmapi.dll     6.1.7601.18917     C:\Windows\system32
+74a00000 iphlpapi.dll   6.1.7601.17514     C:\Windows\system32
+74a30000 WINNSI.DLL     6.1.7600.16385     C:\Windows\system32
+74a40000 ntmarta.dll    6.1.7600.16385     C:\Windows\system32
+74a80000 uxtheme.dll    6.1.7600.16385     C:\Windows\system32
+75360000 version.dll    6.1.7600.16385     C:\Windows\system32
+75430000 CRYPTBASE.dll  6.1.7601.19045     C:\Windows\syswow64
+75440000 SspiCli.dll    6.1.7601.19045     C:\Windows\syswow64
+754a0000 MSASN1.dll     6.1.7601.17514     C:\Windows\syswow64
+754b0000 WLDAP32.dll    6.1.7601.17514     C:\Windows\syswow64
+75500000 GDI32.dll      6.1.7601.18898     C:\Windows\syswow64
+75590000 RPCRT4.dll     6.1.7601.19045     C:\Windows\syswow64
+75680000 CLBCatQ.DLL    2001.12.8530.16385 C:\Windows\syswow64
+75710000 LPK.dll        6.1.7601.18985     C:\Windows\syswow64
+75720000 shell32.dll    6.1.7601.18952     C:\Windows\syswow64
+76370000 CFGMGR32.dll   6.1.7601.17621     C:\Windows\syswow64
+763a0000 NSI.dll        6.1.7600.16385     C:\Windows\syswow64
+763c0000 user32.dll     6.1.7601.19061     C:\Windows\syswow64
+764d0000 SHLWAPI.dll    6.1.7601.17514     C:\Windows\syswow64
+76530000 ole32.dll      6.1.7601.18915     C:\Windows\syswow64
+76690000 DEVOBJ.dll     6.1.7601.17621     C:\Windows\syswow64
+76950000 WINTRUST.dll   6.1.7601.18839     C:\Windows\syswow64
+76980000 MSCTF.dll      6.1.7601.18731     C:\Windows\syswow64
+76a50000 comdlg32.dll   6.1.7601.17514     C:\Windows\syswow64
+76ad0000 CRYPT32.dll    6.1.7601.18839     C:\Windows\syswow64
+76d50000 KERNELBASE.dll 6.1.7601.19045     C:\Windows\syswow64
+76da0000 ADVAPI32.dll   6.1.7601.18939     C:\Windows\syswow64
+77090000 PSAPI.DLL      6.1.7600.16385     C:\Windows\syswow64
+770c0000 kernel32.dll   6.1.7601.19045     C:\Windows\syswow64
+771d0000 IMM32.DLL      6.1.7601.17514     C:\Windows\system32
+77240000 USP10.dll      1.626.7601.19054   C:\Windows\syswow64
+772e0000 WS2_32.dll     6.1.7601.17514     C:\Windows\syswow64
+773b0000 sechost.dll    6.1.7601.18869     C:\Windows\SysWOW64
+773d0000 SETUPAPI.dll   6.1.7601.17514     C:\Windows\syswow64
+77570000 msvcrt.dll     7.0.7601.17744     C:\Windows\syswow64
+77620000 oleaut32.dll   6.1.7601.18679     C:\Windows\syswow64
+77ae0000 ntdll.dll      6.1.7601.19045     C:\Windows\SysWOW64
+
+cpu registers:
+eax = 022fcf70
+ebx = 0042f85c
+ecx = 00000000
+edx = 00464b42
+esi = 0018eac8
+edi = 00000000
+eip = 00464b42
+esp = 0018ea68
+ebp = 0018eb70
+
+stack dump:
+0018ea68  42 4b 46 00 de fa ed 0e - 01 00 00 00 07 00 00 00  BKF.............
+0018ea78  7c ea 18 00 42 4b 46 00 - 70 cf 2f 02 5c f8 42 00  |...BKF.p./.\.B.
+0018ea88  c8 ea 18 00 00 00 00 00 - 70 eb 18 00 98 ea 18 00  ........p.......
+0018ea98  00 00 00 00 79 c3 4b 00 - 02 00 00 00 11 57 46 00  ....y.K......WF.
+0018eaa8  25 23 00 00 02 00 04 06 - fc ea 18 00 7f b4 08 c3  %#..............
+0018eab8  05 0e 16 00 0b 00 00 00 - 00 00 00 00 50 01 59 00  ............P.Y.
+0018eac8  a8 ea 18 00 06 00 00 00 - 99 eb 18 00 c8 fb 18 00  ................
+0018ead8  00 00 00 00 e4 58 46 00 - cd 57 46 00 f2 0f 00 00  .....XF..WF.....
+0018eae8  9e c3 4b 00 d4 71 2f 02 - ec fb 18 00 00 00 00 00  ..K..q/.........
+0018eaf8  00 10 00 00 00 00 00 00 - da ec a9 74 f0 2b d9 02  ...........t.+..
+0018eb08  1c eb 18 00 38 00 00 00 - 07 00 00 00 30 eb 18 00  ....8.......0...
+0018eb18  07 00 04 03 07 00 00 00 - 74 01 59 00 00 00 00 00  ........t.Y.....
+0018eb28  00 00 00 00 00 00 00 00 - 50 01 59 00 45 31 b5 77  ........P.Y.E1.w
+0018eb38  00 e7 62 00 fe ff ff ff - 38 c9 62 00 07 00 00 00  ..b.....8.b.....
+0018eb48  7b c3 4b 00 ff ff ff ff - 00 00 00 00 07 00 00 23  {.K............#
+0018eb58  79 c3 4b 00 00 00 00 00 - 00 00 00 00 01 00 00 00  y.K.............
+0018eb68  8c eb 18 00 00 00 00 00 - 94 fb 18 00 2f 5c 46 00  ............/\F.
+0018eb78  02 00 00 00 d4 fb 18 00 - 32 00 00 00 5c 3c 2f 02  ........2...\</.
+0018eb88  dc 3f 2f 02 4d 6f 76 65 - 54 6f 3a 20 66 72 6f 6d  .?/.MoveTo: from
+0018eb98  20 eb 18 00 68 1d bb 77 - 38 01 59 00 4c 1d bb 77   ...h..w8.Y.L..w
+
+disassembling:
+[...]
+004bc2ff       mov     [ebp-$10], eax
+004bc302       mov     byte ptr [ebp-$c], $b
+004bc306       lea     edx, [ebp-$20]
+004bc309       mov     ecx, 2
+004bc30e       mov     eax, $4bc36c
+004bc313     > call    -$5674c ($465bcc)      ; SysUtils.Format
+004bc313
+004bc318       mov     edx, [ebp-8]
+004bc31b       mov     eax, ebx
+004bc31d       call    +$83e ($4bcb60)        ; WiseDome.TWiseDome.log
+004bc31d
+[...]
+
+date/time          : 2015-12-27, 11:46:12, 87ms
+computer name      : HALIFAX
+user name          : Blumzi
+registered owner   : Blumzi
+operating system   : Windows 7 x64 Service Pack 1 build 7601
+system language    : Russian
+system up time     : 5 days 21 hours
+program up time    : 1 minute 17 seconds
+processors         : 8x Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz
+physical memory    : 9009/16301 MB (free/total)
+free disk space    : (C:) 211.10 GB
+display mode       : 1680x1050, 32 bit
+process id         : $267c
+allocated memory   : 36.89 MB
+largest free block : 1.25 GB
+executable         : DomeAgent.exe
+exec. date/time    : 2015-12-27 11:44
+version            : 1.0.3.0
+compiled with      : Delphi 6
+madExcept version  : 4.0.12
+callstack crc      : $c2772e96, $ba235fe0, $ba235fe0
+count              : 19
+exception number   : 1
+exception class    : EConvertError
+exception message  : Format '%#' invalid or incompatible with argument.
+
+main thread ($7320):
+00464b3d DomeAgent.exe SysUtils          ConvertErrorFmt
+0046570c DomeAgent.exe SysUtils          FormatError
+004658df DomeAgent.exe SysUtils          FormatBuf.@label
+004657c8 DomeAgent.exe SysUtils          FormatBuf
+00465c2a DomeAgent.exe SysUtils          FmtStr
+00465bd6 DomeAgent.exe SysUtils          Format
+004bccef DomeAgent.exe WiseDome  872 +11 TWiseDome.SD_report
+004bb9e7 DomeAgent.exe WiseDome  286 +29 TWiseDome.onDomeTimer
+0048c433 DomeAgent.exe ExtCtrls          TTimer.Timer
+0048c317 DomeAgent.exe ExtCtrls          TTimer.WndProc
+0047adcc DomeAgent.exe Classes           StdWndProc
+763d7bd5 user32.dll                      DispatchMessageA
+004b410f DomeAgent.exe Forms             TApplication.ProcessMessage
+004b412e DomeAgent.exe Forms             TApplication.HandleMessage
+004b434e DomeAgent.exe Forms             TApplication.Run
+004c1aa0 DomeAgent.exe DomeAgent  24  +5 initialization
+770d3378 kernel32.dll                    BaseThreadInitThunk
+
+thread $4210:
+77b00196 ntdll.dll     NtWaitForMultipleObjects
+770d3378 kernel32.dll  BaseThreadInitThunk
+
+thread $2c98: <priority:1>
+77aff992 ntdll.dll               NtRemoveIoCompletion
+0045fa91 DomeAgent.exe madExcept CallThreadProcSafe
+0045fafb DomeAgent.exe madExcept ThreadExceptFrame
+770d3378 kernel32.dll            BaseThreadInitThunk
+>> created by main thread ($7320) at:
+739fa34f mswsock.dll
+
+thread $1c20:
+77b01f7f ntdll.dll     NtWaitForWorkViaWorkerFactory
+770d3378 kernel32.dll  BaseThreadInitThunk
+
+thread $7030:
+77b01f7f ntdll.dll     NtWaitForWorkViaWorkerFactory
+770d3378 kernel32.dll  BaseThreadInitThunk
+
+thread $3bc4:
+77b01f7f ntdll.dll     NtWaitForWorkViaWorkerFactory
+770d3378 kernel32.dll  BaseThreadInitThunk
+
+thread $3128:
+77b01f7f ntdll.dll     NtWaitForWorkViaWorkerFactory
+770d3378 kernel32.dll  BaseThreadInitThunk
+
+modules:
+00400000 DomeAgent.exe  1.0.3.0            C:\Users\Blumzi\Desktop\Wise\9 - Wise - 22 Dec 2015\Dome Agent
+10450000 FaultRep.dll   6.1.7601.17514     C:\Windows\system32
+60800000 CBW32.DLL      1.85.0.0           C:\Program Files (x86)\Measurement Computing\DAQ
+6ee70000 mdnsNSP.dll    3.1.0.1            C:\Program Files (x86)\Bonjour
+6eea0000 WLIDNSP.DLL    7.250.4311.0       C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live
+6eed0000 winrnr.dll     6.1.7600.16385     C:\Windows\System32
+6eee0000 DNSAPI.dll     6.1.7601.17570     C:\Windows\system32
+6ef30000 pnrpnsp.dll    6.1.7600.16385     C:\Windows\system32
+6ef50000 napinsp.dll    6.1.7600.16385     C:\Windows\system32
+6ef60000 NLAapi.dll     6.1.7601.18685     C:\Windows\system32
+6ef70000 wshtcpip.dll   6.1.7600.16385     C:\Windows\System32
+6f7b0000 propsys.dll    7.0.7601.17514     C:\Windows\system32
+711b0000 wsock32.dll    6.1.7600.16385     C:\Windows\system32
+73410000 comctl32.DLL   6.10.7601.18837    C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.18837_none_41e855142bd5705d
+739f0000 mswsock.dll    6.1.7601.18254     C:\Windows\System32
+74130000 comctl32.dll   5.82.7601.18837    C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.7601.18837_none_ec86b8d6858ec0bc
+742b0000 WINMM.dll      6.1.7601.17514     C:\Windows\system32
+742f0000 dwmapi.dll     6.1.7601.18917     C:\Windows\system32
+74a00000 iphlpapi.dll   6.1.7601.17514     C:\Windows\system32
+74a30000 WINNSI.DLL     6.1.7600.16385     C:\Windows\system32
+74a40000 ntmarta.dll    6.1.7600.16385     C:\Windows\system32
+74a80000 uxtheme.dll    6.1.7600.16385     C:\Windows\system32
+75360000 version.dll    6.1.7600.16385     C:\Windows\system32
+75430000 CRYPTBASE.dll  6.1.7601.19045     C:\Windows\syswow64
+75440000 SspiCli.dll    6.1.7601.19045     C:\Windows\syswow64
+754a0000 MSASN1.dll     6.1.7601.17514     C:\Windows\syswow64
+754b0000 WLDAP32.dll    6.1.7601.17514     C:\Windows\syswow64
+75500000 GDI32.dll      6.1.7601.18898     C:\Windows\syswow64
+75590000 RPCRT4.dll     6.1.7601.19045     C:\Windows\syswow64
+75680000 CLBCatQ.DLL    2001.12.8530.16385 C:\Windows\syswow64
+75710000 LPK.dll        6.1.7601.18985     C:\Windows\syswow64
+75720000 shell32.dll    6.1.7601.18952     C:\Windows\syswow64
+76370000 CFGMGR32.dll   6.1.7601.17621     C:\Windows\syswow64
+763a0000 NSI.dll        6.1.7600.16385     C:\Windows\syswow64
+763c0000 user32.dll     6.1.7601.19061     C:\Windows\syswow64
+764d0000 SHLWAPI.dll    6.1.7601.17514     C:\Windows\syswow64
+76530000 ole32.dll      6.1.7601.18915     C:\Windows\syswow64
+76690000 DEVOBJ.dll     6.1.7601.17621     C:\Windows\syswow64
+76950000 WINTRUST.dll   6.1.7601.18839     C:\Windows\syswow64
+76980000 MSCTF.dll      6.1.7601.18731     C:\Windows\syswow64
+76a50000 comdlg32.dll   6.1.7601.17514     C:\Windows\syswow64
+76ad0000 CRYPT32.dll    6.1.7601.18839     C:\Windows\syswow64
+76d50000 KERNELBASE.dll 6.1.7601.19045     C:\Windows\syswow64
+76da0000 ADVAPI32.dll   6.1.7601.18939     C:\Windows\syswow64
+77090000 PSAPI.DLL      6.1.7600.16385     C:\Windows\syswow64
+770c0000 kernel32.dll   6.1.7601.19045     C:\Windows\syswow64
+771d0000 IMM32.DLL      6.1.7601.17514     C:\Windows\system32
+77240000 USP10.dll      1.626.7601.19054   C:\Windows\syswow64
+772e0000 WS2_32.dll     6.1.7601.17514     C:\Windows\syswow64
+773b0000 sechost.dll    6.1.7601.18869     C:\Windows\SysWOW64
+773d0000 SETUPAPI.dll   6.1.7601.17514     C:\Windows\syswow64
+77570000 msvcrt.dll     7.0.7601.17744     C:\Windows\syswow64
+77620000 oleaut32.dll   6.1.7601.18679     C:\Windows\syswow64
+77ae0000 ntdll.dll      6.1.7601.19045     C:\Windows\SysWOW64
+
+cpu registers:
+eax = 006b778c
+ebx = 0042f85c
+ecx = 00000000
+edx = 00464b42
+esi = 0018ec5c
+edi = 00000000
+eip = 00464b42
+esp = 0018ebfc
+ebp = 0018ed04
+
+stack dump:
+0018ebfc  42 4b 46 00 de fa ed 0e - 01 00 00 00 07 00 00 00  BKF.............
+0018ec0c  10 ec 18 00 42 4b 46 00 - 8c 77 6b 00 5c f8 42 00  ....BKF..wk.\.B.
+0018ec1c  5c ec 18 00 00 00 00 00 - 04 ed 18 00 2c ec 18 00  \...........,...
+0018ec2c  00 00 00 00 64 cd 4b 00 - 02 00 00 00 11 57 46 00  ....d.K......WF.
+0018ec3c  25 23 00 00 5b 5d 46 00 - e7 5e 46 00 b3 5d 46 00  %#..[]F..^F..]F.
+0018ec4c  00 00 00 00 7c fd 18 00 - 44 ed 18 00 02 00 00 39  ....|...D......9
+0018ec5c  3c ec 18 00 06 32 36 31 - 28 ed 18 00 58 fd 18 00  <....261(...X...
+0018ec6c  00 00 00 00 e4 58 46 00 - cd 57 46 00 f7 0f 00 00  .....XF..WF.....
+0018ec7c  95 cd 4b 00 57 02 00 00 - 8c fd 18 00 00 00 00 00  ..K.W...........
+0018ec8c  00 10 00 00 12 00 00 00 - 39 5b 46 00 05 00 00 00  ........9[F.....
+0018ec9c  00 00 00 00 41 5b 46 00 - 00 00 00 00 88 fd 18 00  ....A[F.........
+0018ecac  00 00 00 00 00 10 00 00 - ec eb 18 39 37 2e 34 77  ...........97.4w
+0018ecbc  24 ed 18 00 f0 ec 18 00 - be 0d 30 77 00 00 5b 00  $.........0w..[.
+0018eccc  10 76 4c 00 50 f8 5b 00 - 10 00 00 00 0c 6b 6b 00  .vL.P.[......kk.
+0018ecdc  66 cd 4b 00 ff ff ff ff - 00 00 00 00 9a 41 40 23  f.K..........A@#
+0018ecec  64 cd 4b 00 00 00 00 00 - 00 00 00 00 01 00 00 00  d.K.............
+0018ecfc  20 ed 18 00 00 00 00 00 - 28 fd 18 00 2f 5c 46 00   .......(.../\F.
+0018ed0c  04 00 00 00 64 fd 18 00 - 39 00 00 00 57 02 00 00  ....d...9...W...
+0018ed1c  dc 3f 6b 00 53 44 3a 20 - 61 7a 3a 20 8c fd 18 00  .?k.SD: az: ....
+0018ed2c  00 00 00 00 88 fd 18 00 - 00 10 00 00 95 5c 46 00  .............\F.
+
+disassembling:
+[...]
+004bccdb       mov     [ebp-$18], eax
+004bccde       mov     byte ptr [ebp-$14], 0
+004bcce2       lea     edx, [ebp-$38]
+004bcce5       mov     ecx, 4
+004bccea       mov     eax, $4bcd5c
+004bccef     > call    -$57128 ($465bcc)      ; SysUtils.Format
+004bccef
+004bccf4       mov     edx, [ebp-$10]
+004bccf7       mov     eax, ebx
+004bccf9       call    -$1aa ($4bcb54)        ; WiseDome.TWiseDome.log
+004bccf9
+[...]
+
