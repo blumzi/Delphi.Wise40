@@ -599,6 +599,12 @@ var
   shortestWay: TWiseDirection;
   dir: string;
 begin
+
+  if Self.fStuck then begin
+    Self.log(Format('MoveTo: Refused to move to %5.1f - Stuck handling in progress', [tgtAz]));
+    exit;
+  end;
+
   shortestWay := ShortestWayToAz(Self.Azimuth, tgtAz);
   if shortestWay = DirCW then begin
     Self.targetAz := tgtAz;
@@ -905,7 +911,7 @@ begin
         Self.currentStuckState    := FirstStop;
         Self.currentStuckStateStr := 'cooling';
         Self.nextStuckEvent       := IncMilliSecond(rightNow, 10000);
-        Self.log(Format('stuck: %5.1f deg, phase1: stopped moving, letting wheels cool for 10 seconds', [Self.Azimuth]));
+        Self.log(Format('stuck: currAz: %5.1f deg, phase1: stopped moving, letting wheels cool for 10 seconds', [Self.Azimuth]));
       end;
 
     FirstStop: begin            // Go backward for two seconds
@@ -913,7 +919,7 @@ begin
         Self.currentStuckState    := GoBackward;
         Self.currentStuckStateStr := 'backing';
         Self.nextStuckEvent       := IncMilliSecond(rightNow, 2000);
-        Self.log(Format('stuck: %5.1f deg, phase2: going backwards for 2 seconds', [Self.Azimuth]));
+        Self.log(Format('stuck: currAz: %5.1f deg, phase2: going backwards for 2 seconds', [Self.Azimuth]));
       end;
 
     GoBackward: begin           // Stop again for two seconds
@@ -921,17 +927,20 @@ begin
         Self.currentStuckState    := SecondStop;
         Self.currentStuckStateStr := 'pausing';
         Self.nextStuckEvent       := IncMilliSecond(rightNow, 2000);
-        Self.log(Format('stuck: %5.1f deg, phase3: stopping for 2 seconds', [Self.Azimuth]));
+        Self.log(Format('stuck: currAz: %5.1f deg, phase3: stopping for 2 seconds', [Self.Azimuth]));
       end;
 
     SecondStop: begin           // Done, resume original movement
-        forwardPin.SetOn;
         Self.currentStuckState    := NotStuck;
         Self.currentStuckStateStr := '';
         Self.fStuck               := false;
         Self.stuckTimer.Enabled   := false;
         Self.nextStuckEvent       := 0;
-        Self.log(Format('stuck: %5.1f deg, phase4: resumed original motion', [Self.Azimuth]));
+        if Self.targetAz <> -1 then begin
+          Self.log(Format('stuck: currAz: %5.1f deg, phase4: resumed original movement to %5.1f', [Self.Azimuth, Self.targetAz]));
+          MoveTo(targetAz);
+        end else
+          Self.log(Format('stuck: currAz: %5.1f deg, phase4: targetAz == -1: doing nothing', [Self.Azimuth]));
       end;
   end;
 end;
