@@ -9,7 +9,7 @@ uses
 
 type TWiseDomeState      = ( Idle = 0, MovingCCW = 1, MovingCW = 2, AutoShutdown = 3 );
 type TWiseShutterState   = ( ShutterIdle, ShutterOpening, ShutterOpen, ShutterClosing, ShutterClosed );
-type TWiseDomeStuckPhase = ( NotStuck, FirstStop, GoBackward, SecondStop, ResumeForward );
+type TWiseDomeStuckPhase = ( NotStuck, JustStuck, FirstStop, GoBackward, SecondStop, ResumeForward );
 type TAutoShutdown       = procedure of object;
 
 
@@ -58,21 +58,21 @@ private
   server:             TServerSocket;
   AutoShutdown:       TAutoShutdown;
 
-  //Start Stop Debugging
+  // Stop Debugging
   SD_startTime:       TDateTime;
   SD_startTicks:      integer;
   SD_startAz:         real;
   SD_state:           TWiseDomeState;
 
-  // unStuck
+  // Stuck Handling
   currentStuckState:  TWiseDomeStuckPhase;
   currentStuckStateStr: string;
   nextStuckEvent:     TDateTime;
+  endOfStuckHandling: TDateTime;
+  startOfStuckEnc:    integer;
 
   procedure           SD_start;
   procedure           SD_report;
-  // End Stop debugging
-
 
   procedure           onClientRead      (Sender: TObject; Socket: TCustomWinSocket);
   procedure           onClientConnect   (Sender: TObject; Socket: TCustomWinSocket);
@@ -119,7 +119,7 @@ public
   // Status methods
   function    stateStr:        string;
   function    shutterStateStr: string;
-  function    debug:           string;
+  function    status:          string;
 
   procedure   log(s: string);
 
@@ -348,7 +348,7 @@ begin
   end;
 
   if Self.fStuck then begin
-    Self.currentStuckState    := NotStuck;
+    Self.currentStuckState    := JustStuck;
     Self.nextStuckEvent       := Now;
     Self.onStuckTimer(nil); // call first phase immediately
     Self.stuckTimer.Enabled := true;
@@ -412,6 +412,7 @@ begin
   Self.stuckTimer.Enabled        := false;
   Self.stuckTimer.Interval       := 1000;     // 1Hz
   Self.stuckTimer.OnTimer        := onStuckTimer;
+  Self.startOfStuckEnc           := -1;
 
   Self.log('Dome agent started');
 end;
@@ -830,17 +831,14 @@ begin
   end;
 end;
 
-function TWiseDome.debug: string;
+function TWiseDome.status: string;
 begin
-  Result := Format('encoder: %4d', [Self.Encoder.Value]);
-{
-  Result := Format('e: %d, a: %.01f, Ce: %d, Ca: %.01f, dE: %d, dA: %.01f',
-         [Self.Encoder.Value, Self.Azimuth,
-          Self.Encoder.CaliTicks, Self.Encoder.CaliAz,
-          Abs(Self.Encoder.Value - Self.Encoder.CaliTicks),
-          Abs(Self.Azimuth - Self.Encoder.CaliAz)
-         ]);
-}
+  Result := '';
+{$ifdef DEBUG}
+    Result := Result + Format('enc: %4d ', [Self.Encoder.Value]);
+{$endif DEBUG}
+  if Self.fStuck then
+    Result := Result + Format('Unsticking (%d sec remaining)', [SecondsBetween(Now, Self.endOfStuckHandling)]);
 end;
 
 procedure TWiseDome.CloseVent;
@@ -883,6 +881,11 @@ procedure TWiseDome.onStuckTimer(Sender: TObject);
 var
   rightNow: TDateTime;
   backwardPin, forwardPin: TWisePin;
+  deltaTicks: integer;
+const
+  CoolingMillis: integer = 10000;
+  BackingMillis: integer = 2000;
+  WaitingMillis: integer = 2000;
 begin
   rightNow := Now;
 
@@ -905,29 +908,31 @@ begin
   end;
 
   case Self.currentStuckState of
-    NotStuck: begin             // Stop, let the wheels cool down
+    JustStuck: begin             // Stop, let the wheels cool down
         forwardPin.SetOff;
         backwardPin.SetOff;
         Self.currentStuckState    := FirstStop;
         Self.currentStuckStateStr := 'cooling';
-        Self.nextStuckEvent       := IncMilliSecond(rightNow, 10000);
-        Self.log(Format('stuck: currAz: %5.1f deg, phase1: stopped moving, letting wheels cool for 10 seconds', [Self.Azimuth]));
+        Self.nextStuckEvent       := IncMilliSecond(rightNow, CoolingMillis);
+        Self.endOfStuckHandling   := IncMilliSecond(rightNow, CoolingMillis + BackingMillis + WaitingMillis);
+        Self.startOfStuckEnc      := Self.Encoder.Value;
+        Self.log(Format('stuck: currAz: %5.1f deg, phase1: stopped moving, letting wheels cool for %d seconds', [Self.Azimuth, (CoolingMillis / 1000)]));
       end;
 
     FirstStop: begin            // Go backward for two seconds
         backwardPin.SetOn;
         Self.currentStuckState    := GoBackward;
         Self.currentStuckStateStr := 'backing';
-        Self.nextStuckEvent       := IncMilliSecond(rightNow, 2000);
-        Self.log(Format('stuck: currAz: %5.1f deg, phase2: going backwards for 2 seconds', [Self.Azimuth]));
+        Self.nextStuckEvent       := IncMilliSecond(rightNow, BackingMillis);
+        Self.log(Format('stuck: currAz: %5.1f deg, phase2: going backwards for %d seconds', [Self.Azimuth, (BackingMillis / 1000)]));
       end;
 
     GoBackward: begin           // Stop again for two seconds
         backwardPin.SetOff;
         Self.currentStuckState    := SecondStop;
         Self.currentStuckStateStr := 'pausing';
-        Self.nextStuckEvent       := IncMilliSecond(rightNow, 2000);
-        Self.log(Format('stuck: currAz: %5.1f deg, phase3: stopping for 2 seconds', [Self.Azimuth]));
+        Self.nextStuckEvent       := IncMilliSecond(rightNow, WaitingMillis);
+        Self.log(Format('stuck: currAz: %5.1f deg, phase3: stopping for %d seconds', [Self.Azimuth, (WaitingMillis / 1000)]));
       end;
 
     SecondStop: begin           // Done, resume original movement
@@ -936,6 +941,10 @@ begin
         Self.fStuck               := false;
         Self.stuckTimer.Enabled   := false;
         Self.nextStuckEvent       := 0;
+        deltaTicks                := Self.Encoder.ShortestDeltaValue(Self.startOfStuckEnc);
+        Self.startOfStuckEnc      := -1;
+        Self.log(Format('stuck: currAz: %5.1f deg, deltaTicks: %d', [deltaTicks]));
+        
         if Self.targetAz <> -1 then begin
           Self.log(Format('stuck: currAz: %5.1f deg, phase4: resumed original movement to %5.1f', [Self.Azimuth, Self.targetAz]));
           MoveTo(targetAz);

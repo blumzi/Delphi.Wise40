@@ -125,10 +125,8 @@ begin
     Self.Caption := 'Dome (remote)'
   else
     Self.Caption := 'Dome Agent';
-    
-{$ifdef DEBUG}
-  Status(Dome.debug);
-{$endif DEBUG}
+
+  Status(Dome.status);
 end;
 
 procedure TDomeForm.OnCreate(Sender: TObject);

@@ -51,6 +51,7 @@ public
 
   function      GetAzimuth: real;
   procedure     Calibrate(az: real);
+  function      ShortestDeltaValue(prevValue: integer): integer;  // returns ticks distance between a previous and current values
 
 {$ifdef SIMULATE_DOME_ENCODER}
   procedure     SimulateMovement(dir: TWiseDirection);
@@ -217,7 +218,6 @@ begin
   Result := fValue;
 end;
 
-
 { -- TWiseDomeEncoder -- }
 
 function TWiseDomeEncoder.GetValue: integer;
@@ -306,6 +306,19 @@ begin
      Result := Result - 360.0
   else if Result < 0 then
      Result := Result + 360;
+end;
+
+function TWiseDomeEncoder.ShortestDeltaValue(prevValue: integer): integer;
+var
+  currValue: integer;
+begin
+  currValue := Self.Value;
+  if currValue = prevValue then
+    Result := 0
+  else if currValue < prevValue then
+    Result := Self.Ticks - prevValue + currValue
+  else
+    Result := prevValue + Self.Ticks - currValue;
 end;
 
 {

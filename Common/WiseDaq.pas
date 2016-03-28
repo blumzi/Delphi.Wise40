@@ -6,8 +6,6 @@ uses
     Windows, Classes, SysUtils, cbw, Contnrs, WiseHardware;
 
 type TDaqId           = word;                // (Dir << 8 | ((Board << 6) | port)) = 9bits
-//type TDaqIds          = set of TDaqId;
-//type PTDaqIds         = ^TDaqIds;
 
 type TBoardInfo = record
      model:      PChar;
