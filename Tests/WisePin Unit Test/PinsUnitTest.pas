@@ -169,6 +169,7 @@ begin
        Pins[i] := newpin[i];
    end;
 
+   SetBoardDescription(boardno);
    makeBitsChecker;
    ShowPinValues;
 end;

@@ -378,7 +378,7 @@ begin
   Self.fVentIsOpen               := false;
 
   Self.timer                     := TTimer.Create(nil);
-  Self.timer.Interval            := 10;
+  Self.timer.Interval            := 5;
   Self.timer.Enabled             := true;
   Self.timer.Name                := 'DomeTimer';
   Self.timer.OnTimer             := onDomeTimer;
