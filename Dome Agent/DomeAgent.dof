@@ -47,7 +47,7 @@ PackageDLLOutputDir=
 PackageDCPOutputDir=
 SearchPath=..\Common;.\
 Packages=vcl;rtl;vclx;VclSmp;vclshlctrls
-Conditionals=madExcept;SIMULATE_DOME_ENCODER;SIMULATE_DOME_ENCODER
+Conditionals=madExcept;DEBUG
 DebugSourceDirs=
 UsePackages=0
 [Parameters]
@@ -83,12 +83,12 @@ ProductVersion=1.0.2.0
 Comments=Fixed azimuth and shortest way
 [HistoryLists\hlConditionals]
 Count=6
-Item0=madExcept;SIMULATE_DOME_ENCODER;SIMULATE_DOME_ENCODER
-Item1=madExcept
-Item2=madExcept;SIMULATE_ACCESS_VIOLATION;SIMULATE_ACCESS_VIOLATION
-Item3=madExcept;SIMULATE_DOME_ENCODER;DEBUG;DEBUG
-Item4=madExcept;SIMULATE_DOME_ENCODER
-Item5=madExcept;DEBUG
+Item0=madExcept;DEBUG
+Item1=madExcept;SIMULATE_DOME_ENCODER;SIMULATE_DOME_ENCODER
+Item2=madExcept
+Item3=madExcept;SIMULATE_ACCESS_VIOLATION;SIMULATE_ACCESS_VIOLATION
+Item4=madExcept;SIMULATE_DOME_ENCODER;DEBUG;DEBUG
+Item5=madExcept;SIMULATE_DOME_ENCODER
 [HistoryLists\hlUnitAliases]
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
