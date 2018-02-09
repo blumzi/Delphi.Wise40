@@ -835,10 +835,10 @@ function TWiseDome.status: string;
 begin
   Result := '';
 {$ifdef DEBUG}
-    Result := Result + Format('enc: %4d ', [Self.Encoder.Value]);
+    Result := Result + Format('curr(%4d, %.1f), cali(%d, %.1f)', [Self.Encoder.Value, Self.Azimuth, Self.Encoder.CaliTicks, Self.Encoder.CaliAz]);
 {$endif DEBUG}
   if Self.fStuck then
-    Result := Result + Format('Unsticking (%d sec remaining)', [SecondsBetween(Now, Self.endOfStuckHandling)]);
+    Result := Result + Format(' Unsticking (%d sec remaining)', [SecondsBetween(Now, Self.endOfStuckHandling)]);
 end;
 
 procedure TWiseDome.CloseVent;
