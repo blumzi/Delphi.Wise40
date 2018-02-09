@@ -52,7 +52,7 @@ initialization
   production := false;
   if (WSAStartup($0101,WSAData) = 0) and
         ((gethostname(hostname, sizeof(hostname)) = 0) and
-        (hostname = 'dome-ctlr')) then
+        (hostname = 'dome-pc')) then
     production := true;
 
 end.

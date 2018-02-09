@@ -1,8 +1,8 @@
 object DomeForm: TDomeForm
-  Left = 12
-  Top = 7
+  Left = 1163
+  Top = 272
   Width = 278
-  Height = 490
+  Height = 579
   Caption = 'Dome Agent'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object DomeForm: TDomeForm
   TextHeight = 13
   object StatusBar: TLabel
     Left = 8
-    Top = 408
+    Top = 496
     Width = 249
     Height = 17
     AutoSize = False
@@ -272,12 +272,42 @@ object DomeForm: TDomeForm
         Width = 75
         Height = 25
         Hint = 'Toggle the Dome vent'#39's state'
-        Caption = 'Open Vent'
+        Caption = 'Open'
         Enabled = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 0
         OnClick = VentButtonClick
+      end
+    end
+  end
+  object LightsBox: TGroupBox
+    Left = 5
+    Top = 408
+    Width = 249
+    Height = 73
+    Caption = 'Projector'
+    TabOrder = 3
+    object LightsPanel: TPanel
+      Left = 80
+      Top = 16
+      Width = 89
+      Height = 41
+      BevelOuter = bvNone
+      Caption = 'VentPanel'
+      TabOrder = 0
+      object LightsButton: TButton
+        Left = 6
+        Top = 8
+        Width = 75
+        Height = 25
+        Hint = 'Toggle the Dome vent'#39's state'
+        Caption = 'Turn On'
+        Enabled = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+        OnClick = LightsButtonClick
       end
     end
   end
@@ -296,11 +326,11 @@ object DomeForm: TDomeForm
     Interval = 100
     OnTimer = OnStatusTimer
     Left = 16
-    Top = 448
+    Top = 536
   end
   object MainMenu: TMainMenu
     Left = 104
-    Top = 448
+    Top = 528
     object AboutMenuItem: TMenuItem
       Caption = 'About'
       OnClick = AboutButtonClick

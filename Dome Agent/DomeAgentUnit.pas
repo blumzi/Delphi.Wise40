@@ -36,8 +36,11 @@ type
     ProgressBar:     TProgressBar;
     CalibrateButton: TButton;
     VentBox:         TGroupBox;
-    VentButton: TButton;
-    VentPanel: TPanel;
+    VentButton:      TButton;
+    VentPanel:       TPanel;
+    LightsBox:       TGroupBox;
+    LightsPanel:     TPanel;
+    LightsButton:    TButton;
 
     procedure MainTimerTick      (Sender: TObject);
     procedure OnCreate           (Sender: TObject);
@@ -64,6 +67,10 @@ type
     procedure AboutButtonClick(Sender: TObject);
     procedure CalibrateButtonClick(Sender: TObject);
     procedure VentButtonClick(Sender: TObject);
+    procedure LightsButtonClick(Sender: TObject);
+
+    procedure UpdateLightsButton;
+    procedure UpdateVentButton;
 
   private
     { Private declarations }
@@ -138,6 +145,8 @@ begin
   end;
 
   Dome := TWiseDome.Create(AutoShutdown);
+  UpdateLightsButton;
+  UpdateVentButton;
 end;
 
 procedure TDomeForm.DomeLeftStart(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -266,7 +275,6 @@ begin
     Dome.Stop;
     Dome.StopShutter;
     Dome.Close;
-    //Dome.CloseVent;
     Shutdownmsg.SDTimer.Enabled := false;
   end else
     Shutdownmsg.SDTimer.Enabled := false;
@@ -315,14 +323,47 @@ end;
 procedure TDomeForm.VentButtonClick(Sender: TObject);
 begin
   if Dome.VentIsOpen then begin
-    Dome.CloseVent;
-    VentButton.Caption := 'Open Vent';
+    Dome.SetVent(False);
+    VentButton.Caption := 'Open';
     VentPanel.Color    := clBtnFace;
   end else begin
-    Dome.OpenVent;
-    VentButton.Caption := 'Close Vent';
+    Dome.SetVent(True);
+    VentButton.Caption := 'Close';
     VentPanel.Color    := clLime;
   end;
+end;
+
+
+procedure TDomeForm.UpdateVentButton;
+begin 
+  if Dome.VentIsOpen then begin
+    VentButton.Caption := 'Close';
+    VentPanel.Color    := clLime;
+  end else begin
+    VentButton.Caption := 'Open';
+    VentPanel.Color    := clBtnFace;
+  end;
+end;
+
+procedure TDomeForm.UpdateLightsButton;
+begin 
+  if Dome.LightsAreOn then begin
+    LightsButton.Caption := 'Turn Off';
+    LightsPanel.Color    := clLime;
+  end else begin
+    LightsButton.Caption := 'Turn On';
+    LightsPanel.Color    := clBtnFace;
+  end;
+end;
+
+procedure TDomeForm.LightsButtonClick(Sender: TObject);
+begin
+  if Dome.LightsAreOn then
+    Dome.SetLights(False)
+  else
+    Dome.SetLights(True);
+    
+  UpdateLightsButton;
 end;
 
 initialization

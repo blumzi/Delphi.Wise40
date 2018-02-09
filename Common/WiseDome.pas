@@ -37,9 +37,8 @@ private
   fShutterState:      TWiseShutterState;
   fShutterOpenPcent:  real;
   activityStart:      TDateTime;
-
-  fVentIsOpen:        boolean;
   VentPin:            TWisePin;
+  LightsPin:          TWisePin;
 
   prevTicks:          integer;
 
@@ -113,8 +112,12 @@ public
   procedure   onMovementTimer(Sender: TObject);
 
   // Vent methods
-  procedure   OpenVent;
-  procedure   CloseVent;
+  function GetVent: boolean;
+  procedure SetVent(value: boolean);
+
+  // Lights methods
+  function GetLights: boolean;
+  procedure SetLights(value: boolean);
 
   // Status methods
   function    stateStr:        string;
@@ -134,7 +137,8 @@ public
   property    Connected:    boolean read fConnected;
   property    Calibrating:  boolean read fCalibrating;
 
-  property    VentIsOpen:   boolean read fVentIsOpen;
+  property    VentIsOpen:   boolean read GetVent write SetVent;
+  property    LightsAreOn:  boolean read GetLights write SetLights;
   
 end;
 
@@ -358,7 +362,10 @@ begin
 end;
 
 constructor TWiseDome.Create(autoshutdown: TAutoShutdown; autocal: boolean = false);
+var
+  ventOnTeleBoard: boolean;
 begin
+
   Self.AutoShutdown              := autoshutdown;
   Self.logger                    := TWiseLogger.Create('dome-agent');
   Self.Encoder                   := TWiseDomeEncoder.Create('DomeEncoder',
@@ -371,11 +378,13 @@ begin
   Self.RightPin                  := TWisePin.Create('DomeRightPin', daqId(domeboard, FIRSTPORTA,  DIGITALOUT), 3);
   Self.CaliPin                   := TWisePin.Create('DomeCaliPin',  daqId(domeboard, FIRSTPORTCL, DIGITALIN),  0);
 
-  if production then
+  ventOnTeleBoard := True;
+  if ventOnTeleBoard then
     Self.VentPin                 := TWisePin.Create('VentPin',      daqId(teleboard, THIRDPORTCL, DIGITALOUT), 0)
   else
-    Self.VentPin                 := TWisePin.Create('VentPin',      daqId(domeboard, FIRSTPORTA,  DIGITALOUT), 7);
-  Self.fVentIsOpen               := false;
+    Self.VentPin                 := TWisePin.Create('VentPin',      daqId(domeboard, FIRSTPORTA,  DIGITALOUT), 5);
+
+  Self.LightsPin                 := TWisePin.Create('LightsPin',    daqId(domeboard, FIRSTPORTA,  DIGITALOUT), 4);
 
   Self.timer                     := TTimer.Create(nil);
   Self.timer.Interval            := 5;
@@ -823,12 +832,19 @@ begin
 end;
 
 // Vent methods
-procedure TWiseDome.OpenVent;
+
+function TWiseDome.GetVent: boolean;
 begin
-  if not Self.fVentIsOpen then begin
-    Self.VentPin.SetOn;
-    Self.fVentIsOpen := true;
-  end;
+  Result := Self.VentPin.IsOn;
+end;
+
+procedure TWiseDome.SetVent(value: boolean);
+begin
+  if not GetVent = value then
+    if value = True then
+      Self.VentPin.SetOn
+    else
+      Self.VentPin.SetOff;
 end;
 
 function TWiseDome.status: string;
@@ -841,12 +857,17 @@ begin
     Result := Result + Format(' Unsticking (%d sec remaining)', [SecondsBetween(Now, Self.endOfStuckHandling)]);
 end;
 
-procedure TWiseDome.CloseVent;
+function TWiseDome.GetLights: boolean;
 begin
-  if Self.fVentIsOpen then begin
-    Self.VentPin.SetOff;
-    Self.fVentIsOpen := false;
-  end;
+  Result := Self.LightsPin.IsOn;
+end;
+
+procedure TWiseDome.SetLights(value: boolean);
+begin
+  if (value = True) then
+    Self.LightsPin.SetOn
+  else
+    Self.LightsPin.SetOff;
 end;
 
 // Stop debugging methods
