@@ -271,9 +271,8 @@ object DomeForm: TDomeForm
         Top = 8
         Width = 75
         Height = 25
-        Hint = 'Toggle the Dome vent'#39's state'
+        Hint = 'Open/close the Dome vent.'
         Caption = 'Open'
-        Enabled = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 0
@@ -301,9 +300,8 @@ object DomeForm: TDomeForm
         Top = 8
         Width = 75
         Height = 25
-        Hint = 'Toggle the Dome vent'#39's state'
+        Hint = 'Turns the Dome projector on/off.'
         Caption = 'Turn On'
-        Enabled = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 0
