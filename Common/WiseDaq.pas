@@ -291,9 +291,9 @@ begin
    WiseDaqsInfoInitialized := true;
 
   if production then begin
-    focusboard := 0;
+    focusboard := 2;
     teleboard  := 1;
-    domeboard  := 2;
+    domeboard  := 0;
   end else begin
     focusboard := 0;
     teleboard  := 0;
