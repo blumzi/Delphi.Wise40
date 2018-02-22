@@ -362,8 +362,6 @@ begin
 end;
 
 constructor TWiseDome.Create(autoshutdown: TAutoShutdown; autocal: boolean = false);
-var
-  ventOnTeleBoard: boolean;
 begin
 
   Self.AutoShutdown              := autoshutdown;
@@ -378,12 +376,7 @@ begin
   Self.RightPin                  := TWisePin.Create('DomeRightPin', daqId(domeboard, FIRSTPORTA,  DIGITALOUT), 3);
   Self.CaliPin                   := TWisePin.Create('DomeCaliPin',  daqId(domeboard, FIRSTPORTCL, DIGITALIN),  0);
 
-  ventOnTeleBoard := True;
-  if ventOnTeleBoard then
-    Self.VentPin                 := TWisePin.Create('VentPin',      daqId(teleboard, THIRDPORTCL, DIGITALOUT), 0)
-  else
-    Self.VentPin                 := TWisePin.Create('VentPin',      daqId(domeboard, FIRSTPORTA,  DIGITALOUT), 5);
-
+  Self.VentPin                   := TWisePin.Create('VentPin',      daqId(domeboard, FIRSTPORTA,  DIGITALOUT), 5);
   Self.LightsPin                 := TWisePin.Create('LightsPin',    daqId(domeboard, FIRSTPORTA,  DIGITALOUT), 4);
 
   Self.timer                     := TTimer.Create(nil);
